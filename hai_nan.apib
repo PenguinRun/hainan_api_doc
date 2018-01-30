@@ -52,15 +52,17 @@ example: https://hainan-api.oss.tw/api/beach
 編號 | 欄位名稱 | 內容 | 註記
 --:| ---- | ----------- | ---- |
  1 | id | 區域id | int | 
- 2 | title | 區域名稱 | string | 
- 3 | description | 區域描述 | string |
- 4 | geojson | geo格式圖資 | string | 
- 5 | ref_url | 參考連結網址 | string |
- 6 | beachClear | 淨灘需求 | boolean | false: 沒需求, true: 有需求
- 7 | auther | 通報建立者 | string | 
- 8 | editor | 通報修改者 | string |
- 9 | createDate | 通報建立時間 | string |
- 10 | updateDate | 通報修改時間 | string |
+ 2 | city | 城市 | string |
+ 3 | beachName | 海灘名稱 | string |
+ 4 | title | 海灘區段 | string | 
+ 5 | description | 區域描述 | string |
+ 6 | geojson | geo格式圖資 | string | 
+ 7 | ref_url | 參考連結網址 | string |
+ 8 | beachClean | 淨灘需求 | boolean | false: 沒需求, true: 有需求
+ 9 | auther | 通報建立者 | string | 
+ 10 | editor | 通報修改者 | string |
+ 11 | createDate | 通報建立時間 | string |
+ 12 | updateDate | 通報修改時間 | string |
 
 + Response 200
 
@@ -70,16 +72,27 @@ example: https://hainan-api.oss.tw/api/beach
                 "result": 
                     [
                         {
-                            "id": 1,
-                            "title": "黃金海岸",
-                            "description": "南台灣黃金海岸",
-                            "geojson": "geo格式圖資"
-                            "refURL": "https://ecolife2.epa.gov.tw/coastal/"
-                            "beachClear": true,
-                            "auther": "王小明",
-                            "editor": "陳大明",
-                            "createDate": "2018-01-01",
-                            "updateData": "2018-01-15"
+                            "id": "6227cdd6-271b-4e16-92aa-78698c734b63",
+                            "city": "新北市",
+                            "beachName": "嘉寶沙灘",
+                            "title": "嘉寶沙灘-1",
+                            "description": "",
+                            "geojson": [
+                                [
+                                    121.32094860076906,
+                                    25.123298323905402
+                                ],
+                                [
+                                    121.32587934324003,
+                                    25.123774144896046
+                                ]
+                            ],
+                            "refURL": "https://ecolife2.epa.gov.tw/coastal/SeaResult.aspx?slid=118",
+                            "beachClean": false,
+                            "auther": "fd6e1fc0-e116-44c8-8bda-5de78e48568b",
+                            "createDate": "2018-01-30T10:40:28.000Z",
+                            "editor": "fd6e1fc0-e116-44c8-8bda-5de78e48568b",
+                            "updateDate": "2018-01-30T10:40:28.000Z"
                         },
                         ...
                     ]
@@ -101,7 +114,7 @@ API
 
 :::
 
-## 提取淨灘通報 request [/api/beach/notification]
+## 淨灘通報 request [/api/beach/notification]
 
 ### 提取淨灘通報 [GET] 
 
@@ -119,11 +132,12 @@ example: https://hainan-api.oss.tw/api/beach/notification
  2 | targetID | 淨灘id | int | 
  3 | targetName | 淨灘地點 | string |
  4 | description | 描述 | string |
- 5 | beachClear | 淨灘需求 | boolean | false: 沒需求, true: 有需求
- 6 | auther | 通報建立者 | string |
- 7 | editor | 通報修改者 | string |
- 8 | createDate | 通報建立時間 | string |
- 9 | updateDate | 通報修改時間 | string |
+ 5 | imageURL | 通報圖片 | string |
+ 6 | beachClean | 淨灘需求 | boolean | false: 沒需求, true: 有需求
+ 7 | auther | 通報建立者 | string |
+ 8 | editor | 通報修改者 | string |
+ 9 | createDate | 通報建立時間 | string |
+ 10 | updateDate | 通報修改時間 | string |
 
 + Response 200
 
@@ -138,7 +152,7 @@ example: https://hainan-api.oss.tw/api/beach/notification
                             "targetName": "黃金海岸",
                             "description": "黃金海岸需要淨灘",
                             "imageURL": "https://i.imgur.com/FZIV7sy.jpg"
-                            "beachClear": true,
+                            "beachClean": true,
                             "auther": "王小明",
                             "editor": "陳大明",
                             "createDate": "2018-01-01",
@@ -161,7 +175,7 @@ example: https://hainan-api.oss.tw/api/beach/notification
  1 | targetID | 淨灘id | int | (必填欄位)
  2 | description | 描述 | string | 
  3 | imageURL | 通報圖片 | string | (必填欄位)
- 4 | beachClear | 淨灘需求 | boolean | false: 沒需求, true: 有需求 | (必填欄位)
+ 4 | beachClean | 淨灘需求 | boolean | false: 沒需求, true: 有需求 | (必填欄位)
 
 + Response 200
 
@@ -180,7 +194,7 @@ example: https://hainan-api.oss.tw/api/beach/notification
                                 "targetID": 2,
                                 "description": "黃金海岸需要淨灘",
                                 "imageURL": "https://i.imgur.com/FZIV7sy.jpg"
-                                "beachClear": true
+                                "beachClean": true
                             }
                     }
             }
@@ -209,7 +223,7 @@ example: https://hainan-api.oss.tw/api/beach/notification
                     }
             }
 
-## 提取淨灘通報 request [/api/beach/notification/{id}]
+## 淨灘通報 request [/api/beach/notification/{id}]
 
 + Parameters
 
@@ -217,7 +231,7 @@ example: https://hainan-api.oss.tw/api/beach/notification
 
 ### 修改淨灘通報 [PUT] 
 
-example: https://hainan-api.oss.tw/api/beach/notification/1
+example: https://hainan-api.oss.tw/api/beach/notification/?id=1
 
 ---
 
@@ -228,7 +242,7 @@ example: https://hainan-api.oss.tw/api/beach/notification/1
  1 | id | 淨灘通報id | int | (必填欄位)
  2 | description | 描述 | string |
  3 | imageURL | 通報圖片 | string | 
- 4 | beachClear | 淨灘需求 | boolean | false: 沒需求, true: 有需求 |
+ 4 | beachClean | 淨灘需求 | boolean | false: 沒需求, true: 有需求 |
 
 + Response 200
 
@@ -247,7 +261,7 @@ example: https://hainan-api.oss.tw/api/beach/notification/1
                                 "id": 1,
                                 "description": "黃金海岸不需要淨灘",
                                 "imageURL": "https://i.imgur.com/FZIV7sy.jpg"
-                                "beachClear": false
+                                "beachClean": false
                             }
                     }
             }
@@ -278,7 +292,7 @@ example: https://hainan-api.oss.tw/api/beach/notification/1
 
 ### 刪除淨灘通報 [DELETE] 
 
-example: https://hainan-api.oss.tw/api/beach/notification/1
+example: https://hainan-api.oss.tw/api/beach/notification/?id=1
 
 ---
 
@@ -337,7 +351,7 @@ API
 
 :::
 
-## 提取淨灘活動 request [/api/beach/activity]
+## 淨灘活動 request [/api/beach/activity]
 
 ### 提取淨灘活動 [GET] 
 
@@ -456,7 +470,7 @@ example: https://hainan-api.oss.tw/api/beach/activity
                     }
             }
 
-## 提取淨灘活動 request [/api/beach/activity/{id}]
+## 淨灘活動 request [/api/beach/activity/{id}]
 
 + Parameters
 
@@ -464,7 +478,7 @@ example: https://hainan-api.oss.tw/api/beach/activity
 
 ### 更改淨灘活動 [PUT] 
 
-example: https://hainan-api.oss.tw/api/beach/activity/1
+example: https://hainan-api.oss.tw/api/beach/activity/?id=1
 
 ---
 
@@ -533,7 +547,7 @@ example: https://hainan-api.oss.tw/api/beach/activity/1
 
 ---
 
-example: https://hainan-api.oss.tw/api/beach/activity/1
+example: https://hainan-api.oss.tw/api/beach/activity/?id=1
 
 + Response 200
 
