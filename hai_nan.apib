@@ -7,10 +7,11 @@ HanNan Chance
 ## 文件說明
 
 使用第三方登入 - Facebook
+提取Tokenb
 
 + 會員
     + 第三方登入 [GET]
-
+    + 提取Token [GET]
 :::
 
 ## 第三方登入 request [/api/beach/login/facebook]
@@ -21,11 +22,22 @@ example: https://hainan-api.oss.tw/api/beach/login/facebook
 
 ---
 
++ Response 302
+
+## 提取Token request [/api/beach/login/token/:id]
+
+### 提取Token [GET] 
+
+example: https://hainan-api.oss.tw/api/beach/login/token/?id=12345678
+
+---
+
 + Response 200
 
     + Headers
 
             x-access-token: "token值"
+
 
 # Group 淨灘資料
 
@@ -192,11 +204,13 @@ example: https://hainan-api.oss.tw/api/beach/notification
  3 | imageURL | 通報圖片 | string | (必填欄位)
  4 | beachClean | 淨灘需求 | boolean | false: 沒需求, true: 有需求 | (必填欄位)
 
-+ Response 200
++ Request 需要token
 
     + Headers
 
             x-access-token: "token值"
+
++ Response 200
 
     + Body
 
@@ -259,11 +273,13 @@ example: https://hainan-api.oss.tw/api/beach/notification/?id=1
  3 | imageURL | 通報圖片 | string | 
  4 | beachClean | 淨灘需求 | boolean | false: 沒需求, true: 有需求 |
 
-+ Response 200
++ Request 需要token
 
     + Headers
 
             x-access-token: "token值"
+
++ Response 200
 
     + Body
 
@@ -311,11 +327,13 @@ example: https://hainan-api.oss.tw/api/beach/notification/?id=1
 
 ---
 
-+ Response 200
++ Request 需要token
 
     + Headers
 
             x-access-token: "token值"
+
++ Response 200
 
     + Body
 
@@ -451,11 +469,13 @@ example: https://hainan-api.oss.tw/api/beach/activity
  6 | place | 集合地點 | string | (必填欄位)
  7 | refURL | 外部參考網址 | string |
 
-+ Response 200
++ Request 需要token
 
     + Headers
 
             x-access-token: "token值"
+
++ Response 200
 
     + Body
 
@@ -524,11 +544,13 @@ example: https://hainan-api.oss.tw/api/beach/activity/?id=1
  6 | place | 集合地點 | string |
  7 | refURL | 外部參考網址 | string |
 
-+ Response 200
++ Request 需要token
 
     + Headers
 
             x-access-token: "token值"
+
++ Response 200
 
     + Body
 
@@ -579,11 +601,13 @@ example: https://hainan-api.oss.tw/api/beach/activity/?id=1
 
 example: https://hainan-api.oss.tw/api/beach/activity/?id=1
 
-+ Response 200
++ Request 需要token
 
     + Headers
 
             x-access-token: "token值"
+
++ Response 200
 
     + Body
 
